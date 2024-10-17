@@ -49,6 +49,7 @@ def index():
                             num1, num2 = map(int, i.replace("-", " ").split())
                             xi.append((num1, num2))
                     except Exception as e:
+                        print(f"error: {e}")
                         return render_template('index.html', num_columns=None, answer=None, error=e, types=None)
                     finally:
                         types['continuous'] = True
@@ -57,6 +58,7 @@ def index():
                     try:
                         xi.append(int(i))
                     except Exception as e:
+                        print(f"error: {e}")
                         return render_template('index.html', num_columns=None, answer=None, error=e, types=None)
 
             if types['continuous']:
