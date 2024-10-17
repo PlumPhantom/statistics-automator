@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OwO... Whats here...? MATHS!?!?!?!?!?!</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        p {
+            color: rgb(220, 150, 253);
+        }
+        h2 {
+            color: rgb(181, 117, 255); /* Change the title color to purple */
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Style for title and subheading */
+        h3 {
+            color: #6500AC; /* Change the title color to purple */
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h4 {
+            color: #27007C; /* Change the title color to purple */
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Style for captcha boxes */
+        .box {
+            border: 2px solid #460057; /* Blue border */
+            width: 300px; /* Width of the box */
+            padding: 8px; /* Padding inside the box */
+            text-align: center; /* Center-align content */
+            margin: 15px auto; /* Center the box on the page */
+            border-radius: 4px;
+        }
+
+        /* Style for the image */
+        .box img {
+            width: 100px; /* Set width of the image */
+            height: 100px; /* Set height of the image */
+            display: block;
+            margin: 0 auto; /* Center the image */
+        }
+
+        /* Style for input and button */
+        .input-container {
+            display: flex; /* Use flexbox for side-by-side layout */
+            margin-top: 9px; /* Margin above the container */
+        }
+
+        /* Style for the input bar */
+        .input-container input[type="number"] {
+            flex: 1; /* Allow input to take remaining width */
+            padding: 5px; /* Padding inside the input */
+            border: 1px solid rgb(255, 255, 255); /* Gray border */
+            background-color: black;
+            border-radius: 5px;
+            color: #5B2681;
+        }
+        .input2 {
+            flex: 1; /* Allow input to take remaining width */
+            padding: 5px; /* Padding inside the input */
+            border: 1px solid rgb(255, 255, 255); /* Gray border */
+            background-color: black;
+            border-radius: 5px;
+            color: #5B2681;
+        }
+        .btn2 {
+            padding: 5px 10px; /* Padding inside the button */
+            border: none; /* Remove border */
+            background-color: #4d00b1; /* Button background color */
+            color: white; /* Button text color */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 5px;
+        }
+        /* Style for the send button */
+        .input-container button {
+            padding: 5px 10px; /* Padding inside the button */
+            border: none; /* Remove border */
+            background-color: #4d00b1; /* Button background color */
+            color: white; /* Button text color */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 5px;
+        }
+
+        /* Style for the red text */
+        .red-text {
+            color: #E27CFF; /* Red color for "no captchas to solve" text */
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <center><h2>Statistics - [Mean]</h2></center>
+    <hr color= "#D000FF"/>
+    {% if error is not none %}
+        <h3>Cool, an error</h3>
+        <p>what did you do to manage to break my server -_-</p>
+        <hr color= "#3c004a"/>
+        <p><b>Error:</b></p>
+        <p>{{ error }}</p>
+        <hr color= "#3c004a"/>
+        <hr color= "#D000FF"/>
+    {% endif %}
+    {% if num_columns is not none %}
+        <form action="/" method="POST">
+            <div>
+                <h3>Class</h3>
+                {% for i in range(num_columns) %}
+                    <input type="text" name="class" class="input2" required>
+                {% endfor %}
+            </div>
+            <div>
+                <h3>Fi</h3>
+                {% for i in range(num_columns) %}
+                    <input type="number" name="fi" class="input2" required>
+                {% endfor %}
+            </div>
+            <br/>
+            <button type="submit" class="btn2">Submit</button>
+        </form>
+    {% else %}
+        <div class="box">
+            <p color "#E27CFF">Enter number of columns:-</p>
+            <hr color= "#D000FF"/>
+            <form action="/" method="POST" class="input-container">
+                <input type="number" id="num_columns" name="num_columns" required>
+                <button type="submit">Submit</button>
+            </form> 
+        </div>
+    {% endif %}
+    <hr color= "#D000FF"/>
+    {% if answer is not none %}
+        <h4>Calculated answer:- </h4>
+        {% raw %}
+        <span style="color: #B875FF;"> 
+            \( \overline{x} = \frac{{\sum{{f \cdot m}}}}{{\sum{{f}}}} = \) 
+        </span>
+        {% endraw %}
+        <p>
+            <span id="fraction" style="color: #B875FF;"> 
+                \[
+                \frac{ {{ answer[0] }} }{ {{ answer[1] }} } =
+                \]
+            </span>
+        </p>
+        <script>
+            MathJax.typesetPromise();
+        </script>
+        <p>Answer :- {{ answer[2] }}</p>
+    {% endif %}
+    <div class="footer">
+        <hr color= "#750090"/>
+        <a href="https://github.com/EchoQuill">Made by EchoQuill</a>
+    </div>
+</body>
+</html>
+<!--Made by Dimlight. (Aka EchoQuill,  or Youidijit, or Kir_qa 💀  -->
